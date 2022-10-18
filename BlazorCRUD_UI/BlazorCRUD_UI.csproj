@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\BlazorCRUD_Data_Dapper\BlazorCRUD_Data_Dapper.csproj" />
+    <ProjectReference Include="..\BlazorCRUD_Model\BlazorCRUD_Model.csproj" />
+  </ItemGroup>
+
+</Project>

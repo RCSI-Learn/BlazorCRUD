@@ -1,0 +1,49 @@
+﻿@page "/FilmList"
+@using BlazorCRUD_Model
+@using Interfaces
+@inject IFilmService FilmService
+
+<h1>Film List</h1>
+<p>this page shows a list of all films.</p>
+
+@if (films == null) {
+	<p><em>Loading...</em></p>
+}
+else {
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Id</th>
+				<th>Title</th>
+				<th>Director</th>
+				<th>Release Date</th>
+				<th></th>
+				<th></th>
+			</tr>
+		</thead>
+		<tbody>
+			@foreach (var film in films) {
+				<tr>
+					<td>@film.Id</td>
+					<td>@film.Title</td>
+					<td>@film.Director</td>
+					<td>@film.ReleaseDate</td>
+					<td><a href="/FilmDetails/@film.Id"><i>Edit</i></a></td>
+					<td><a href="/FilmDelete/@film.Id"><i>Delete</i></a></td>
+					<td></td>
+				</tr>
+			}
+		</tbody>
+	</table>
+}
+@code {
+	private IEnumerable<Film> films;
+	protected override async Task OnInitializedAsync() {
+		try {
+			films = await FilmService.GetAllFilms();
+		}
+		catch (Exception) {
+			throw;
+		}
+	}
+}
